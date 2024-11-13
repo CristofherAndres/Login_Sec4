@@ -1,5 +1,6 @@
 package com.example.loginfb
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -50,6 +51,11 @@ class MainActivity : AppCompatActivity() {
             signUp(correo, clave)
         }
 
+        binding.tvRegistrar.setOnClickListener {
+            val intent = Intent(this, registrar::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun signUp(email: String, password: String) {
@@ -57,6 +63,8 @@ class MainActivity : AppCompatActivity() {
                 .addOnCompleteListener{
                     if(it.isSuccessful){
                         Toast.makeText(this, "Inicio de sesión correcto", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, PostLogin::class.java)
+                        startActivity(intent)
                     }else{
                         Toast.makeText(this, "Error al iniciar sesión", Toast.LENGTH_SHORT).show()
                     }
